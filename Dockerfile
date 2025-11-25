@@ -1,11 +1,11 @@
-# Use PHP 8.2 FPM
+# PHP 8.2 FPM
 
 FROM php:8.2-fpm
 
-# Install system dependencies
+# Install system dependencies and PHP extensions
 
 RUN apt-get update && apt-get install -y 
-git curl zip unzip libpng-dev libonig-dev libxml2-dev libzip-dev 
+git curl zip unzip libpng-dev libonig-dev libxml2-dev libzip-dev nodejs npm 
 && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd 
 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -17,7 +17,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copy all project files (including prebuilt public/build)
+# Copy all files
 
 COPY . .
 
@@ -25,14 +25,19 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
+# Install JS dependencies & build assets
+
+RUN npm install
+RUN npm run build
+
 # Set Laravel permissions
 
 RUN chown -R www-data:www-data storage bootstrap/cache public/build
 
 # Expose port for PHP-FPM
 
-EXPOSE 9000
+EXPOSE 8080
 
-# Start PHP-FPM
+# Start Laravel server (for development only; for production use PHP-FPM + Nginx)
 
-CMD ["php-fpm"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
