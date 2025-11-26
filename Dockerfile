@@ -25,10 +25,13 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Install JS deps + build assets
 RUN npm install
-RUN npm run build
+RUN npm run build --production
 
-# Laravel perms
+# Laravel permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
+
+# IMPORTANT: Storage symlink
+RUN php artisan storage:link
 
 EXPOSE 8080
 CMD php artisan serve --host=0.0.0.0 --port=8080
