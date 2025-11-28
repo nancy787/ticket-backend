@@ -1,37 +1,45 @@
-# PHP
+# ---------------------------------------
+# 1. Build JS assets
+# ---------------------------------------
+FROM node:18 AS frontend
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+
+# ---------------------------------------
+# 2. Build PHP/Laravel app
+# ---------------------------------------
 FROM php:8.2-fpm
 
-# Install system packages
+# Install extensions
 RUN apt-get update && apt-get install -y \
     git curl zip unzip \
-    libpng-dev libonig-dev libxml2-dev libzip-dev
-
-RUN docker-php-ext-install pdo_mysql mbstring zip bcmath gd
+    libpng-dev libonig-dev libxml2-dev libzip-dev \
+    && docker-php-ext-install pdo_mysql mbstring zip bcmath gd
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install Node
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get install -y nodejs
-
 WORKDIR /var/www/html
 
-# Copy app
+# Copy app source code
 COPY . .
+
+# Copy built frontend from step 1
+COPY --from=frontend /app/public ./public
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Install JS deps + build assets
-RUN npm install
-RUN npm run build --production
-
-# Laravel permissions
+# Set permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# IMPORTANT: Storage symlink
-RUN php artisan storage:link
-
 EXPOSE 8080
-CMD php artisan serve --host=0.0.0.0 --port=8080
+
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
