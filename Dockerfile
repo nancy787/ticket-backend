@@ -1,16 +1,3 @@
-# ---------------------------------------
-# 1. Build JS assets
-# ---------------------------------------
-FROM node:18 AS frontend
-
-WORKDIR /app
-
-COPY package*.json ./
-
-
-# ---------------------------------------
-# 2. Build PHP/Laravel app
-# ---------------------------------------
 FROM php:8.2-fpm
 
 # Install extensions
@@ -24,11 +11,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copy app source code
+# Copy Laravel app code
 COPY . .
-
-# Copy built frontend from step 1
-COPY --from=frontend /app/public ./public
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
