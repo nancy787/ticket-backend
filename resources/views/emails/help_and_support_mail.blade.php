@@ -84,7 +84,7 @@
             <p><span class="highlight">Subject : </span> {{ $helpAndSupport->subject }}</p>
             <p><span class="highlight">Message : </span> {{ $helpAndSupport->message }}</p>
             <div class="footer">
-                &copy; {{ date('Y') }} Rox Tickets. All rights reserved.
+                &copy; {{ date('Y') }} FITPASS. All rights reserved.
             </div>
         </div>
     </div>

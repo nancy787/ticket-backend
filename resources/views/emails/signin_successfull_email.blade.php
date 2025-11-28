@@ -60,7 +60,7 @@
             <p>We want to let you know that you have successfully registered your account on FitPass app. </p>
         </div>
         <div class="footer">
-                &copy; {{ date('Y') }} Rox Tickets. All rights reserved.
+                &copy; {{ date('Y') }} FITPASS. All rights reserved.
         </div>
     </div>
 </body>

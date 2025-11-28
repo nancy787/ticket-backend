@@ -124,7 +124,7 @@
 </header>
 <div class="section">
   <h2>Privacy Policy</h2>
-  <p>This privacy policy is applicable to the ROX Tickets app (hereinafter referred to as "Application") for mobile devices, which was developed by ROX Tickets (hereinafter referred to as "Service Provider") as a Free service. This service is provided "AS IS".</p>
+  <p>This privacy policy is applicable to the FITPASS app (hereinafter referred to as "Application") for mobile devices, which was developed by FITPASS (hereinafter referred to as "Service Provider") as a Free service. This service is provided "AS IS".</p>
 </div>
 
 <div class="section">

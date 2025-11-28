@@ -93,7 +93,7 @@
             <p>Thank you for choosing our service!</p>
 
             <div class="footer">
-                &copy; {{ date('Y') }} Rox Tickets. All rights reserved.
+                &copy; {{ date('Y') }} FITPASS. All rights reserved.
             </div>
         </div>
     </div>

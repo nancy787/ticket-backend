@@ -90,7 +90,7 @@ a.button:hover {
 
         <a href="{{ env('APP_LOGIN_URL') }}" class="button">Go to Login</a>
         <div class="footer">
-                &copy; {{ date('Y') }} Rox Tickets. All rights reserved.
+                &copy; {{ date('Y') }} FITPASS. All rights reserved.
             </div>
     </div>
 

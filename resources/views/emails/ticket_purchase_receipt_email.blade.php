@@ -94,7 +94,7 @@
                 <li><strong>Date:</strong> <span class="highlight">{{ $transaction->created_at->format('Y-m-d H:i:s') }}</span></li>
             </ul>
             <div class="footer">
-                &copy; {{ date('Y') }} Rox Tickets. All rights reserved.
+                &copy; {{ date('Y') }} FITPASS. All rights reserved.
             </div>
         </div>
     </div>

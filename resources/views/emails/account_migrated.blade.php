@@ -75,7 +75,7 @@
             <p>If you have any questions, feel free to contact our support team.</p>
             <p>Thank you for choosing our service!</p>
             <div class="footer">
-                &copy; {{ date('Y') }} Rox Tickets. All rights reserved.
+                &copy; {{ date('Y') }} FITPASS. All rights reserved.
             </div>
     </div>
 </body>

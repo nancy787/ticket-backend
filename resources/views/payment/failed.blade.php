@@ -120,7 +120,7 @@
     <h1>Failed!</h1>
     <p>Payment Failed</p>
     <div class="footer">
-        &copy; {{ date('Y') }} Rox Tickets. All rights reserved.
+        &copy; {{ date('Y') }} FITPASS. All rights reserved.
     </div>
 </div>
 </body>
